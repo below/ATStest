@@ -19,7 +19,6 @@ if host == nil || host == ""
 end
 
 nmappath = "/usr/local/bin/nmap"
-require "atstest"
 
 puts "Getting server info for #{host}"
 
