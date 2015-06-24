@@ -1,7 +1,12 @@
 # ATStest
 A script to check what needs to be done for talk to a host in iOS 9. 
 
-__It currently requires `nmap` to live in `/usr/local/bin`__
+## WARNING 
+
+Currently this script has some heavy dependencies, which may cause it to be useless. Among these are the assumption, that your `nmap` is linked against a version of openssl that supports TLS 1.2, and that it is in a specific location
+We are trying to remove these dependencies
+
+__Currently `nmap` needs to live in `/usr/local/bin`__
 
 This is work in progress, you are more than welcome to contribute!
 

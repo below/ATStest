@@ -1,6 +1,14 @@
 # Alex@vonBelow.Com 2015
 # This is work in progress, you are more than welcome to contribute!
 
+###########
+# WARNING #
+###########
+
+# Currently this script has some heavy dependencies, which may cause it to be useless. Among these are the assumption, that your nmap
+# is linked against a version of openssl that supports TLS 1.2, and that it is in a specific location
+# We are trying to remove these dependencies
+
 # The idea of this script is to check the requirements for App Transport Security in iOS 9, as outlined here: https://developer.apple.com/library/prerelease/ios/technotes/App-Transport-Security-Technote/index.html#//apple_ref/doc/uid/TP40016240-CH1-SW3
 
 # The requrements are:
@@ -30,8 +38,12 @@ if $? == 0
     puts "Ciphers OK!"
   else
     if content =~/(TLS_DHE_RSA_WITH_AES_256_GCM_SHA384|TLS_DHE_RSA_WITH_AES_128_GCM_SHA256|TLS_DHE_RSA_WITH_AES_256_CBC_SHA256|TLS_DHE_RSA_WITH_AES_256_CBC_SHA|TLS_DHE_RSA_WITH_AES_128_CBC_SHA256|TLS_DHE_RSA_WITH_AES_128_CBC_SHA|TLS_RSA_WITH_AES_256_GCM_SHA384|TLS_RSA_WITH_AES_128_GCM_SHA256|TLS_RSA_WITH_AES_256_CBC_SHA256|TLS_RSA_WITH_AES_256_CBC_SHA|TLS_RSA_WITH_AES_128_CBC_SHA256|TLS_RSA_WITH_AES_128_CBC_SHA)/
-      puts "NSExceptionRequiresForwardSecrecy must be disabled for #{host}"
+      
+      puts "You need to ENABLE forward secrecy on #{host}. Not only will it make your connection safer, you will also benefit from more speed and lower latencies."
+      puts "If you have no control over the configuration of #{host}, you can set NSExceptionRequiresForwardSecrecy to NO"
+      puts "Bear in mind Apple can deprecate or disable this exception at any time. Updating your server is preferred"
     end
+    puts "You need to update #{host}. Seriously"
   end
 
 else
